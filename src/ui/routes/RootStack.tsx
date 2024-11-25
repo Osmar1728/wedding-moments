@@ -2,9 +2,16 @@ import { createDrawerNavigator } from "@react-navigation/drawer";
 import { MainTabsLayout } from "./layouts/MainTabsLayout";
 import { Icon, IconButton, useTheme } from "react-native-paper";
 import { DrawerLayout } from "./layouts/DrawerLayout";
-import { DrawerParamList } from "./navigation.types";
-import { QRCodeScreen } from "../screens/ui/qr/QRCodeScreen";
+import { DrawerParamList, RootStackParamList } from "./navigation.types";
 import { useMemo, useCallback } from "react";
+import ProfileScreen from "../screens/ui/Profile All/Profile";
+import QRCodeScreen from "../screens/ui/qr/QRCodeScreen";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import EditProfileScreen from "../screens/ui/Profile All/EditProfile";
+import { NavigationContainer } from "@react-navigation/native";
+import QuestionScreen from "../screens/ui/Profile All/Questions";
+import InfoScreen from "../screens/ui/Profile All/Info";
+
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
 
@@ -47,6 +54,8 @@ export const RootStack = () => {
     // Implementar la lógica necesaria aquí
   }, []);
 
+  const Stack = createNativeStackNavigator<RootStackParamList>();
+
   return (
     <Drawer.Navigator
       screenOptions={screenOptions as any}
@@ -63,7 +72,7 @@ export const RootStack = () => {
 
       <Drawer.Screen
         name="Perfil"
-        component={() => null}
+        component={ProfileScreen}
         options={{
           drawerIcon: renderDrawerIcon("profile"),
           title: "Perfil",
@@ -105,6 +114,32 @@ export const RootStack = () => {
           title: "Mis Eventos",
         }}
       />
+
+      <Stack.Screen
+        name="EditarPerfil"
+        component={EditProfileScreen}
+        options={{
+          headerTitle: "Editar Perfil",
+          headerBackTitle: "Atrás"
+        }}
+      />
+      <Stack.Screen
+        name="Questions"
+        component={QuestionScreen}
+        options={{
+          headerTitle: "Preguntas Frecuentes",
+          headerBackTitle: "Atrás"
+        }}
+      />
+      <Stack.Screen
+        name="Info"
+        component={InfoScreen}
+        options={{
+          headerTitle: "Politicas de privacidad",
+          headerBackTitle: "Atrás"
+        }}
+      />
+
     </Drawer.Navigator>
   );
 };

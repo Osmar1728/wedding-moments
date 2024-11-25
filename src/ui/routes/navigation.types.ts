@@ -6,6 +6,9 @@ export type AuthStackParamList = {
 export type RootStackParamList = {
   Auth: undefined;
   Tabs: undefined;
+  EditarPerfil: undefined;
+  Questions: undefined;
+  Info: undefined;
 };
 
 export type DrawerParamList = {
