@@ -13,12 +13,12 @@ const ProfileInfoScreen = ({ navigation }: { navigation: any }) => {
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
           <Ionicons name="arrow-back" size={24} color="#333" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.headerTitle}>Políticas de Privacidad</Text>
       </View>
 
@@ -146,13 +146,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   acceptButton: {
-    backgroundColor: "#d32f2f",
     paddingVertical: 10,
     borderRadius: 8,
-    width: "100%",
+    width: "55%",
   },
   acceptButtonText: {
-    fontSize: 16,
+    fontSize: 13,
     fontWeight: "bold",
     color: "#fff",
   },

@@ -4,21 +4,18 @@ import { TextInput, Button, Avatar, Title } from "react-native-paper";
 import PhoneInput from "react-native-phone-number-input";
 
 const ProfileEditScreen = () => {
-  const [nombre, setNombre] = useState("William");
-  const [apellido, setApellido] = useState("Robert");
-  const [correo, setCorreo] = useState("williamrobert@gmail.com");
-  const [edad, setEdad] = useState("32");
-  const [altura, setAltura] = useState("5'4");
-  const [fechaNacimiento, setFechaNacimiento] = useState("12/12/1989");
+  const [nombre, setNombre] = useState("Osmar Casillas Gallardo");
+  const [correo, setCorreo] = useState("osmarcasillas055@gmail.com");
+  const [fechaNacimiento, setFechaNacimiento] = useState("28/10/2003");
   const [telefono, setTelefono] = useState("");
-  const [lada, setLada] = useState("+55");
 
   const handlePhoneChange = (text: string) => {
-    setTelefono(text.slice(0, 10));
+    setTelefono(text.slice(0, 10)); // Limitar a 10 caracteres
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
+
       <View style={styles.avatarContainer}>
         <Avatar.Image
           source={{ uri: "https://via.placeholder.com/150" }}
@@ -30,22 +27,13 @@ const ProfileEditScreen = () => {
       <View style={styles.formContainer}>
         <Title style={styles.formTitle}>Editar Perfil</Title>
 
-        <View style={styles.rowContainer}>
-          <TextInput
-            label="Nombre"
-            value={nombre}
-            onChangeText={setNombre}
-            style={styles.halfInput}
-            mode="outlined"
-          />
-          <TextInput
-            label="Apellido"
-            value={apellido}
-            onChangeText={setApellido}
-            style={styles.halfInput}
-            mode="outlined"
-          />
-        </View>
+        <TextInput
+          label="Nombre"
+          value={nombre}
+          onChangeText={setNombre}
+          style={styles.input}
+          mode="outlined"
+        />
 
         <TextInput
           label="Correo Electrónico"
@@ -56,30 +44,11 @@ const ProfileEditScreen = () => {
           keyboardType="email-address"
         />
 
-        <View style={styles.rowContainer}>
-          <TextInput
-            label="Edad"
-            value={edad}
-            onChangeText={setEdad}
-            style={styles.halfInput}
-            mode="outlined"
-            keyboardType="numeric"
-          />
-          <TextInput
-            label="Altura"
-            value={altura}
-            onChangeText={setAltura}
-            style={styles.halfInput}
-            mode="outlined"
-          />
-        </View>
-
         <View style={styles.phoneContainer}>
           <PhoneInput
-            defaultCode="US"
+            defaultCode="MX"
             layout="first"
             value={telefono}
-            onChangeFormattedText={setLada}
             onChangeText={handlePhoneChange}
             containerStyle={styles.phoneInput}
             textInputStyle={styles.phoneTextInput}
@@ -131,20 +100,17 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 15,
-  },
-  rowContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    marginBottom: 15,
-  },
-  halfInput: {
-    width: "48%",
+    width: "100%",
   },
   phoneContainer: {
     marginBottom: 15,
   },
   phoneInput: {
     width: "100%",
+    height: 60,
+    borderWidth: 1,
+    borderColor: "#ddd",
+    borderRadius: 8,
   },
   phoneTextInput: {
     fontSize: 16,
@@ -154,13 +120,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   saveButton: {
-    backgroundColor: "#d32f2f",
-    width: "100%",
+    width: "55%",
     paddingVertical: 10,
     marginBottom: 10,
   },
   discardButton: {
-    width: "100%",
+    width: "55%",
     paddingVertical: 10,
     color: "#666",
   },

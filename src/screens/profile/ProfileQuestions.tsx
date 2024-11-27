@@ -22,7 +22,12 @@ type Categorias = {
 
 const ProfileQuestionsScreen = ({ navigation }: { navigation: any }) => {
   const [activeTab, setActiveTab] = useState<keyof Categorias>("Ceremonia");
-  const [expanded, setExpanded] = useState<number[]>([]);
+  const [expanded, setExpanded] = useState<{ [key: string]: number | null }>({
+    Ceremonia: null,
+    Recepción: null,
+    Fotos: null,
+    Invitados: null,
+  });
 
   const preguntasPorCategoria: Categorias = {
     Ceremonia: [
@@ -97,23 +102,22 @@ const ProfileQuestionsScreen = ({ navigation }: { navigation: any }) => {
     setActiveTab(tab);
   };
 
-  const toggleExpand = (index: number) => {
-    if (expanded.includes(index)) {
-      setExpanded(expanded.filter((i) => i !== index));
-    } else {
-      setExpanded([...expanded, index]);
-    }
+  const toggleExpand = (tab: keyof Categorias, index: number) => {
+    setExpanded((prev) => ({
+      ...prev,
+      [tab]: prev[tab] === index ? null : index,
+    }));
   };
 
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.headerContainer}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => navigation.goBack()}
           style={styles.backButton}
         >
           <Ionicons name="arrow-back" size={24} color="#333" />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <Text style={styles.headerText}>Preguntas Frecuentes</Text>
       </View>
 
@@ -122,7 +126,6 @@ const ProfileQuestionsScreen = ({ navigation }: { navigation: any }) => {
           <TouchableOpacity
             key={tab}
             onPress={() => handleTabChange(tab as keyof Categorias)}
-            style={[styles.tabItem, activeTab === tab && styles.activeTab]}
           >
             <Text
               style={[
@@ -141,14 +144,14 @@ const ProfileQuestionsScreen = ({ navigation }: { navigation: any }) => {
           <View key={index} style={styles.accordionContainer}>
             <TouchableOpacity
               style={styles.accordionHeader}
-              onPress={() => toggleExpand(index)}
+              onPress={() => toggleExpand(activeTab, index)}
             >
               <Text style={styles.question}>{item.pregunta}</Text>
               <Text style={styles.plusButton}>
-                {expanded.includes(index) ? "-" : "+"}
+                {expanded[activeTab] === index ? "-" : "+"}
               </Text>
             </TouchableOpacity>
-            {expanded.includes(index) && (
+            {expanded[activeTab] === index && (
               <Text style={styles.answer}>{item.respuesta}</Text>
             )}
           </View>
@@ -184,11 +187,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderBottomWidth: 1,
     borderBottomColor: "#ddd",
-  },
-  tabItem: {
-    paddingVertical: 10,
-    flex: 1,
-    alignItems: "center",
   },
   activeTab: {
     borderBottomWidth: 3,

@@ -14,6 +14,10 @@ export type ProfileStackParamList = {
   ProfileQuestions: undefined;
 };
 
+export type AgendaStackParamList = {
+  Agenda: undefined;
+};
+
 export type TabsParamList = {
   home: undefined;
   itinerario: undefined;
@@ -52,6 +56,7 @@ export const ROUTES = {
   DRAWER: {
     TABS: "Tabs",
     PROFILE: "Profile",
+    AGENDA: "Agenda",
     GUESTS: "Invitados",
     QRCODE: "QRCode",
     EVENTS: "Eventos",

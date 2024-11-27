@@ -15,10 +15,10 @@ const ProfileScreen = () => {
           size={100}
           style={styles.avatar}
         />
-        <Text style={styles.userName}>Osmar Casillas</Text>
+        <Text style={styles.userName}>Osmar Casillas Gallardo</Text>
 
         <TouchableRipple onPress={() => navigation.navigate("ProfileEdit")}>
-          <Button mode="outlined" style={styles.viewProfileButton}>
+          <Button mode="outlined">
             Ver perfil
           </Button>
         </TouchableRipple>
@@ -31,7 +31,7 @@ const ProfileScreen = () => {
           onPress={() => navigation.navigate("ProfileQuestions")}
           style={styles.listItem}
         />
-        <List.Item
+       {/*  <List.Item
           title="Favoritos"
           left={() => <List.Icon icon="heart-outline" />}
           style={styles.listItem}
@@ -40,7 +40,7 @@ const ProfileScreen = () => {
           title="Ajustes"
           left={() => <List.Icon icon="cog-outline" />}
           style={styles.listItem}
-        />
+        /> */}
         <List.Item
           title="Ayuda"
           left={() => <List.Icon icon="help-circle-outline" />}
@@ -71,7 +71,6 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   viewProfileButton: {
-    borderColor: "#d32f2f",
     color: "#d32f2f",
   },
   listContainer: {
